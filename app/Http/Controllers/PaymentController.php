@@ -48,14 +48,12 @@ class PaymentController extends Controller
 
             return view('payment-callback.success', compact('transaction'));
 
-        } else {
-
-            $transaction->update(['status' => TransactionStatus::Failed, 'message' => $res['message'] ?? 'پرداخت ناموفق بود.'
-            ]);
-
-            return view('payment-callback.fail', ['message' => $res['message']]);
-
         }
+
+        $transaction->update(['status' => TransactionStatus::Failed, 'message' => $res['message'] ?? 'پرداخت ناموفق بود.'
+        ]);
+
+        return view('payment-callback.fail', ['message' => $res['message']]);
     }
 
 
